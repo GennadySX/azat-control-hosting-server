@@ -7,4 +7,3 @@ from .models import *
 #
 
 admin.site.register(DomainModel)
-admin.site.register(ProjectTypeModel)

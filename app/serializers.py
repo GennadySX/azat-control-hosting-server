@@ -5,25 +5,11 @@ from django.db.models import fields
 from .models import *
 
 
-class ProjectTypeSerializer(serializers.ModelSerializer):
-
-
-    def update(self, instance, validated_data):
-        instance.save()
-        return instance
-
-    class Meta:
-        fields = ('name','conf', )
-        model = ProjectTypeModel
-
-
 class DomainSerializer(serializers.ModelSerializer):
-    def create(self, validated_data):
-        return DomainModel.save(**validated_data)
 
-    def update(self, instance, validated_data):
-        instance.save()
-        return instance
+    # def update(self, instance, validated_data):
+    #     instance.save()
+    #     return instance
 
     def delete(self, request):
         domain = get_object_or_404(DomainModel.objects.all())
@@ -35,9 +21,7 @@ class DomainSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'path',
-            'static',
+            'port',
             'status',
-            'server',
-            'projectType',
         )
         model = DomainModel

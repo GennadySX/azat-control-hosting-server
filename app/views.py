@@ -8,38 +8,40 @@ import json
 import os
 
 
-# Create your views here.
-class ApiProjectView(ListCreateAPIView):
-    queryset = ProjectTypeModel.objects.all()
-    serializer_class = ProjectTypeSerializer
-
-    def perform_create(self,  serializer):
-        send = ProjectTypeModel.objects.all().first()
-        print('ds')
-        os.system('cscript F:\\TEST\\run.vbs "F:\TEST\d.txt" "Robert" "'+self.request.data.get('conf')+'"')
-        serializer.save()
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, *kwargs)
-
-
-    def delete(self, request, pk):
-        project = get_object_or_404(ProjectTypeModel.objects.all(), pk=pk)
-        project.delete()
-        return project
-
-
-class ApiDomainView(ListCreateAPIView):
+class ApiDomainView(ListCreateAPIView, CreateModelMixin, UpdateModelMixin, DestroyModelMixin ):
     queryset = DomainModel.objects.all()
     serializer_class = DomainSerializer
+
+    def perform_create(self, serializer):
+        # send = DomainModel.objects.all().first()
+        # os.system('cscript F:\\TEST\\run.vbs "F:\TEST\d.txt" "Robert" "' + self.request.data.get('conf') + '"')
+        serializer.save()
+
+    def get_(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
 
     def get(self, request):
         return Response(json.loads(serializers.serialize("json", DomainModel.objects.all())))
 
-    def set(self, request):
-        return Response(json.loads(request.data))
+    def put(self, request, *args, **kwargs):
+        return self.update(request)
 
-    def delete(self, request, pk):
-        domain = get_object_or_404(DomainModel.objects.all(), pk=pk)
-        domain.delete()
-        return domain
+    def update(self, serializer):
+        r = serializer.data
+        domain = DomainModel.objects.get(id=r.get('id'))
+        domain.status = r.get('status')
+        domain.save(update_fields=['status'])
+        return Response({ "data":serializer.data.get('name')})
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        return instance
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return self.update(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
