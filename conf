@@ -1,9 +1,9 @@
 server {
     listen 80;
-    server_name $app_name;
+    server_name app_name;
 
     location / {
-        proxy_pass http://192.168.1.81:$port;
+        proxy_pass http://192.168.1.81:port;
     }
 }
 
