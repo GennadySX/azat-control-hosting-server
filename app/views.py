@@ -6,7 +6,7 @@ from .serializers import *
 from django.core import serializers
 import json
 import os
-
+from django.db.models import Q
 
 class ApiDomainView(ListCreateAPIView, CreateModelMixin, UpdateModelMixin, DestroyModelMixin ):
     queryset = DomainModel.objects.all()
@@ -17,11 +17,8 @@ class ApiDomainView(ListCreateAPIView, CreateModelMixin, UpdateModelMixin, Destr
         # os.system('cscript F:\\TEST\\run.vbs "F:\TEST\d.txt" "Robert" "' + self.request.data.get('conf') + '"')
         serializer.save()
 
-    def get_(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         return self.list(request, *args, *kwargs)
-
-    def get(self, request):
-        return Response(json.loads(serializers.serialize("json", DomainModel.objects.all())))
 
     def put(self, request, *args, **kwargs):
         return self.update(request)
@@ -31,7 +28,7 @@ class ApiDomainView(ListCreateAPIView, CreateModelMixin, UpdateModelMixin, Destr
         domain = DomainModel.objects.get(id=r.get('id'))
         domain.status = r.get('status')
         domain.save(update_fields=['status'])
-        return Response({ "data":serializer.data.get('name')})
+        return Response({ "data": r.get('name')})
 
     def perform_update(self, serializer):
         instance = serializer.save()
@@ -41,7 +38,12 @@ class ApiDomainView(ListCreateAPIView, CreateModelMixin, UpdateModelMixin, Destr
         kwargs['partial'] = True
         return self.update(request, *args, **kwargs)
 
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request, *args, **kwargs):
+        r_id = request.data.get('id')
+        domain = DomainModel.objects.filter(id=r_id)
+        if domain.exists():
+            domain.delete()
+            return Response({'status': True, 'deleted_id': r_id})
+        else:
+            return Response({'status': False, 'err': 'object not found'})
+

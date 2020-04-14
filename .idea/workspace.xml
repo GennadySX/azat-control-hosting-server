@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23c681d3-6056-4c62-9309-4b30bf98538f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dns.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dns.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +50,9 @@
     </expand>
     <select />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -68,7 +75,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="dns" type="Python.DjangoServer" factoryName="Django server">
@@ -120,6 +127,7 @@
       <updated>1586718811637</updated>
       <workItem from="1586718813003" duration="5885000" />
       <workItem from="1586758160089" duration="19539000" />
+      <workItem from="1586840456876" duration="1245000" />
     </task>
     <servers />
   </component>
@@ -164,6 +172,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="196" height="457" key="HiddenNamespacesPopup/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1586720856803" />
+    <state x="461" y="167" key="SettingsEditor" timestamp="1586840604032">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="461" y="167" key="SettingsEditor/1920.0.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1586840604032" />
     <state x="790" y="169" width="326" height="261" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1586721518927">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
